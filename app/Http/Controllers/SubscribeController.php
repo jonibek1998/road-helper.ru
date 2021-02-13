@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use App\Subscription;
 use Illuminate\Http\Request;
+use App\Rules\Captcha;
 
 class SubscribeController extends Controller
 {
@@ -13,7 +14,8 @@ class SubscribeController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'tel' => 'required|numeric',
-            'photo' => 'nullable|image'
+            'photo' => 'nullable|image',
+            'captcha' => 'required|captcha',
         ]);   
 
         $sub = Subscription::create($request->all());
@@ -30,4 +32,10 @@ class SubscribeController extends Controller
 
         return redirect()->back();
     }
+
+    public function refresh()
+    {
+        return captcha_img('math');
+    }
+    
 }

@@ -18,6 +18,7 @@ Route::get('/reviews', 'reviewsController@index')->name('reviews');
 Route::post('/reviews', 'reviewsController@store')->name('comments');
 Route::get('/contact', 'contactController@index')->name('contact');
 Route::post('/subscription', 'SubscribeController@store')->name('subscribe');
+Route::get('/refresh', 'SubscribeController@refresh');
 Route::get('/login', 'AuthController@loginForm')->name('login');
 Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
